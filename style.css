@@ -1,0 +1,211 @@
+/* Variáveis de Cores Globais */
+:root {
+    --body-bg: #f0f2f5;
+    --chat-container-bg: #ffffff;
+    --chat-header-bg: #0056b3;
+    --chat-header-text: #ffffff;
+    --chat-log-text-bot: #333333;
+    --chat-log-bg-bot: #e9ecef;
+    --chat-log-text-user: #ffffff;
+    --chat-log-bg-user: #007bff;
+    --input-area-bg: #f8f9fa;
+    --input-text: #495057;
+    --input-border: #ced4da;
+    --button-send-bg: #28a745;
+    --button-send-text: #ffffff;
+    --text-color-general: #212529;
+    --border-color-soft: #dddddd;
+    --scrollbar-thumb: #0056b3;
+    --scrollbar-thumb-hover: #004494;
+    --theme-toggle-button-color: #ffffff;
+    --theme-toggle-button-hover-bg: rgba(255, 255, 255, 0.1);
+}
+
+/* Estilos para o Modo Escuro */
+body.dark-mode {
+    --body-bg: #121212;
+    --chat-container-bg: #1e1e1e; /* Um pouco mais claro que o body */
+    --chat-header-bg: #1a2a6c; /* Um azul mais escuro e profundo */
+    --chat-header-text: #e0e0e0;
+    --chat-log-text-bot: #e0e0e0;
+    --chat-log-bg-bot: #2c2c2c; /* Cinza escuro para mensagens do bot */
+    --chat-log-text-user: #ffffff;
+    --chat-log-bg-user: #005cbf; /* Azul um pouco mais vibrante no escuro */
+    --input-area-bg: #252525;
+    --input-text: #e0e0e0;
+    --input-border: #444444;
+    --button-send-bg: #1f7a34; /* Verde mais escuro */
+    --button-send-text: #ffffff;
+    --text-color-general: #f5f5f5;
+    --border-color-soft: #333333;
+    --scrollbar-thumb: #3a3a3a;
+    --scrollbar-thumb-hover: #555555;
+    --theme-toggle-button-color: #e0e0e0;
+    --theme-toggle-button-hover-bg: rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos Gerais (usando as variáveis) */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--body-bg);
+    color: var(--text-color-general);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#chat-container {
+    width: 100%;
+    max-width: 500px;
+    height: 90vh;
+    max-height: 700px;
+    background-color: var(--chat-container-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: background-color 0.3s;
+}
+
+#chat-header {
+    background-color: var(--chat-header-bg);
+    color: var(--chat-header-text);
+    padding: 15px 20px;
+    text-align: center;
+    position: relative; /* Para posicionar o botão de tema */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#chat-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+#chat-header p {
+    margin: 5px 0 0;
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+/* Estilo do Botão de Tema */
+#theme-toggle-button {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--theme-toggle-button-color);
+    font-size: 1.2em; /* Tamanho do ícone */
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#theme-toggle-button:hover {
+    background-color: var(--theme-toggle-button-hover-bg);
+}
+
+#chat-log {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: 18px;
+    max-width: 75%;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.message p {
+    margin: 0;
+}
+
+.user {
+    background-color: var(--chat-log-bg-user);
+    color: var(--chat-log-text-user);
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.bot {
+    background-color: var(--chat-log-bg-bot);
+    color: var(--chat-log-text-bot);
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#chat-input-area {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid var(--border-color-soft);
+    background-color: var(--input-area-bg);
+    transition: background-color 0.3s, border-top-color 0.3s;
+}
+
+#user-input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--input-border);
+    border-radius: 20px;
+    margin-right: 10px;
+    font-size: 1em;
+    outline: none;
+    background-color: var(--chat-container-bg); /* Pode ser o mesmo do container ou um específico */
+    color: var(--input-text);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+#user-input:focus {
+    border-color: var(--chat-log-bg-user); /* Usa a cor de destaque do usuário */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Pode ajustar a cor do shadow */
+}
+
+#send-button {
+    background-color: var(--button-send-bg);
+    color: var(--button-send-text);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s;
+}
+
+#send-button:hover {
+    background-color: var(--button-send-bg); /* Ajustar para hover se necessário, ex: lighten/darken */
+    filter: brightness(0.9); /* Exemplo de escurecer um pouco no hover */
+}
+
+/* Estilização da barra de rolagem */
+#chat-log::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chat-log::-webkit-scrollbar-track {
+    background: var(--input-area-bg); /* Cor de fundo da área de input */
+}
+
+#chat-log::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+}
+
+#chat-log::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
